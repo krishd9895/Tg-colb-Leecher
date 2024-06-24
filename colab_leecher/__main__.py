@@ -102,7 +102,9 @@ async def setPrefix(client, message):
         await message.delete()
 
 
-@colab_bot.on_message(filters.create(isLink) & ~filters.photo)
+
+
+@colab_bot.on_message(filters.create(filters.text) & ~filters.photo)
 async def handle_url(client, message):
     global BOT
 
@@ -113,24 +115,29 @@ async def handle_url(client, message):
 
     if src_request_msg:
         await src_request_msg.delete()
+    
     if BOT.State.task_going == False and BOT.State.started:
-        temp_source = message.text.splitlines()
+        # Split message text into words
+        words = message.text.split()
 
-        # Check for arguments in message
-        for _ in range(3):
-            if temp_source[-1][0] == "[":
-                BOT.Options.custom_name = temp_source[-1][1:-1]
-                temp_source.pop()
-            elif temp_source[-1][0] == "{":
-                BOT.Options.zip_pswd = temp_source[-1][1:-1]
-                temp_source.pop()
-            elif temp_source[-1][0] == "(":
-                BOT.Options.unzip_pswd = temp_source[-1][1:-1]
-                temp_source.pop()
+        # Extract URL
+        url = words[0].strip()
+
+        # Check for optional parameters
+        i = 1
+        while i < len(words):
+            if words[i].startswith("-n") or words[i].startswith("-name"):
+                BOT.Options.custom_name = words[i][3:].strip() if words[i].startswith("-n") else words[i][5:].strip()
+            elif words[i].startswith("-z") or words[i].startswith("-zip"):
+                BOT.Options.zip_pswd = words[i][3:].strip() if words[i].startswith("-z") else words[i][5:].strip()
+            elif words[i].startswith("-uz") or words[i].startswith("-unzip"):
+                BOT.Options.unzip_pswd = words[i][4:].strip() if words[i].startswith("-uz") else words[i][6:].strip()
             else:
                 break
+            i += 1
 
-        BOT.SOURCE = temp_source
+        BOT.SOURCE = [url]  # Store the URL in SOURCE (assuming it's a list as per previous logic)
+        
         keyboard = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton("Regular", callback_data="normal")],
