@@ -19,22 +19,22 @@ src_request_msg = None
 @colab_bot.on_message(filters.command("start") & filters.private)
 async def start(client, message):
     await message.delete()
-    text = "**Hey There, 👋🏼 It's Colab Leecher**\n\n◲ I am a Powerful File Transloading Bot 🚀\n◲ I can Transfer Files To Telegram or Your Google Drive From Various Sources 🦐"
+    text = "**Hey There, 👋🏼 It's Colab Leecher**\n\n◲ I am a Powerful File Transloading Bot 🚀\n◲ I can Transfer Files To Telegram or Your Google Drive From Various Sources "
     keyboard = InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton(
                     "Repository 🦄",
-                    url="https://github.com/XronTrix10/Telegram-Leecher",
+                    url="https://github.com/",
                 ),
-                InlineKeyboardButton("Support 💝", url="https://t.me/Colab_Leecher"),
+                InlineKeyboardButton("Support 💝", url="https://t.me/"),
             ],
         ]
     )
     await message.reply_text(text, reply_markup=keyboard)
 
 
-@colab_bot.on_message(filters.command("tupload") & filters.private)
+@colab_bot.on_message(filters.command("leech") & filters.private)
 async def telegram_upload(client, message):
     global BOT, src_request_msg
     BOT.Mode.mode = "leech"
@@ -45,7 +45,7 @@ async def telegram_upload(client, message):
     src_request_msg = await task_starter(message, text)
 
 
-@colab_bot.on_message(filters.command("gdupload") & filters.private)
+@colab_bot.on_message(filters.command("mirror") & filters.private)
 async def drive_upload(client, message):
     global BOT, src_request_msg
     BOT.Mode.mode = "mirror"
@@ -67,7 +67,7 @@ async def directory_upload(client, message):
     src_request_msg = await task_starter(message, text)
 
 
-@colab_bot.on_message(filters.command("ytupload") & filters.private)
+@colab_bot.on_message(filters.command("ytleech") & filters.private)
 async def yt_upload(client, message):
     global BOT, src_request_msg
     BOT.Mode.mode = "leech"
@@ -428,11 +428,11 @@ async def help_command(client, message):
                 [
                     InlineKeyboardButton(  # Opens a web URL
                         "Channel 📣",
-                        url="https://t.me/Colab_Leecher",
+                        url="https://t.me/",
                     ),
                     InlineKeyboardButton(  # Opens a web URL
                         "Group 💬",
-                        url="https://t.me/Colab_Leecher_Discuss",
+                        url="https://t.me/",
                     ),
                 ],
             ]
