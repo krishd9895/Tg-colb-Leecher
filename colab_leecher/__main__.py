@@ -34,18 +34,19 @@ async def start(client, message):
     await message.reply_text(text, reply_markup=keyboard)
 
 
-@colab_bot.on_message(filters.command("leech") & filters.private)
+@colab_bot.on_message(filters.command(["leech", "l"]) & filters.private)
 async def telegram_upload(client, message):
     global BOT, src_request_msg
     BOT.Mode.mode = "leech"
     BOT.Mode.ytdl = False
 
-    text = "<b>⚡ Send Me DOWNLOAD LINK(s) 🔗»</b>\n\n🦀 Follow the below pattern\n\n<code>https//linktofile1.mp4\nhttps//linktofile2.mp4\n[Custom name space.mp4]\n{Password for zipping}\n(Password for unzip)</code>"
+    text = "<b>⚡ Send Me DOWNLOAD LINK(s) 🔗»</b>\n\n🦀 Follow the below pattern\n\n<code>https://linktofile1.mp4\nhttps://linktofile2.mp4\n-n or -name [Custom name.mp4]\n-z or -zip {Password for zipping}\n-uz or -unzip (Password for unzip)</code>"
 
     src_request_msg = await task_starter(message, text)
 
 
-@colab_bot.on_message(filters.command("mirror") & filters.private)
+
+@colab_bot.on_message(filters.command(["mirror", "m"]) & filters.private)
 async def drive_upload(client, message):
     global BOT, src_request_msg
     BOT.Mode.mode = "mirror"
@@ -67,7 +68,7 @@ async def directory_upload(client, message):
     src_request_msg = await task_starter(message, text)
 
 
-@colab_bot.on_message(filters.command("ytleech") & filters.private)
+@colab_bot.on_message(filters.command(["ytleech", "ytl"]) & filters.private)
 async def yt_upload(client, message):
     global BOT, src_request_msg
     BOT.Mode.mode = "leech"
