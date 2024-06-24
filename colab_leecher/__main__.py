@@ -25,7 +25,7 @@ async def start(client, message):
             [
                 InlineKeyboardButton(
                     "Repository 🦄",
-                    url="https://github.com/",
+                    url="https://github.com/XronTrix10/",
                 ),
                 InlineKeyboardButton("Support 💝", url="https://t.me/"),
             ],
@@ -40,10 +40,9 @@ async def telegram_upload(client, message):
     BOT.Mode.mode = "leech"
     BOT.Mode.ytdl = False
 
-    text = "<b>⚡ Send Me DOWNLOAD LINK(s) 🔗»</b>\n\n🦀 Follow the below pattern\n\n<code>https://linktofile1.mp4\nhttps://linktofile2.mp4\n-n or -name [Custom name.mp4]\n-z or -zip {Password for zipping}\n-uz or -unzip (Password for unzip)</code>"
+    text = "<b>⚡ Send Me DOWNLOAD LINK(s) 🔗»</b>\n\n🦀 Follow the below pattern\n\n<code>https//linktofile1.mp4\nhttps//linktofile2.mp4\n[Custom name space.mp4]\n{Password for zipping}\n(Password for unzip)</code>"
 
     src_request_msg = await task_starter(message, text)
-
 
 
 @colab_bot.on_message(filters.command(["mirror", "m"]) & filters.private)
@@ -103,9 +102,7 @@ async def setPrefix(client, message):
         await message.delete()
 
 
-
-
-@colab_bot.on_message(filters.create(filters.text) & ~filters.photo)
+@colab_bot.on_message(filters.create(isLink) & ~filters.photo)
 async def handle_url(client, message):
     global BOT
 
@@ -116,29 +113,24 @@ async def handle_url(client, message):
 
     if src_request_msg:
         await src_request_msg.delete()
-    
     if BOT.State.task_going == False and BOT.State.started:
-        # Split message text into words
-        words = message.text.split()
+        temp_source = message.text.splitlines()
 
-        # Extract URL
-        url = words[0].strip()
-
-        # Check for optional parameters
-        i = 1
-        while i < len(words):
-            if words[i].startswith("-n") or words[i].startswith("-name"):
-                BOT.Options.custom_name = words[i][3:].strip() if words[i].startswith("-n") else words[i][5:].strip()
-            elif words[i].startswith("-z") or words[i].startswith("-zip"):
-                BOT.Options.zip_pswd = words[i][3:].strip() if words[i].startswith("-z") else words[i][5:].strip()
-            elif words[i].startswith("-uz") or words[i].startswith("-unzip"):
-                BOT.Options.unzip_pswd = words[i][4:].strip() if words[i].startswith("-uz") else words[i][6:].strip()
+        # Check for arguments in message
+        for _ in range(3):
+            if temp_source[-1][0] == "[":
+                BOT.Options.custom_name = temp_source[-1][1:-1]
+                temp_source.pop()
+            elif temp_source[-1][0] == "{":
+                BOT.Options.zip_pswd = temp_source[-1][1:-1]
+                temp_source.pop()
+            elif temp_source[-1][0] == "(":
+                BOT.Options.unzip_pswd = temp_source[-1][1:-1]
+                temp_source.pop()
             else:
                 break
-            i += 1
 
-        BOT.SOURCE = [url]  # Store the URL in SOURCE (assuming it's a list as per previous logic)
-        
+        BOT.SOURCE = temp_source
         keyboard = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton("Regular", callback_data="normal")],
@@ -436,11 +428,11 @@ async def help_command(client, message):
                 [
                     InlineKeyboardButton(  # Opens a web URL
                         "Channel 📣",
-                        url="https://t.me/",
+                        url="https://t.me/Colab_Leecher",
                     ),
                     InlineKeyboardButton(  # Opens a web URL
                         "Group 💬",
-                        url="https://t.me/",
+                        url="https://t.me/Colab_Leecher_Discuss",
                     ),
                 ],
             ]
