@@ -428,11 +428,11 @@ async def help_command(client, message):
                 [
                     InlineKeyboardButton(  # Opens a web URL
                         "Channel 📣",
-                        url="https://t.me/Colab_Leecher",
+                        url="https://t.me/",
                     ),
                     InlineKeyboardButton(  # Opens a web URL
                         "Group 💬",
-                        url="https://t.me/Colab_Leecher_Discuss",
+                        url="https://t.me/",
                     ),
                 ],
             ]
