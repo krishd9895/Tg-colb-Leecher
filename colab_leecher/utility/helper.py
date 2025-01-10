@@ -227,18 +227,18 @@ def convertIMG(image_path):
 
 
 def sysINFO():
+    # Get system stats
     ram_usage = psutil.Process(os.getpid()).memory_info().rss
     disk_usage = psutil.disk_usage("/")
-    cpu_usage_percent = psutil.cpu_percent()
+    cpu_usage_percent = psutil.cpu_percent(interval=1)
 
-    
+    # Initialize string
+    string = ""
     string += f"\n╭🖥️ **CPU Usage »**  __{cpu_usage_percent}%__"
     string += f"\n├💽 **RAM Usage »**  __{sizeUnit(ram_usage)}__"
     string += f"\n╰💾 **DISK Free »**  __{sizeUnit(disk_usage.free)}__"
-    
 
     return string
-
 
 def multipartArchive(path: str, type: str, remove: bool):
     dirname, filename = ospath.split(path)
