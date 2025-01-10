@@ -394,7 +394,7 @@ async def status_bar(down_msg, speed, percentage, eta, done, left, engine):
         # Edit the message with updated progress information.
         if isTimeOver():
             await MSG.status_msg.edit_text(
-                text=Messages.task_msg + down_msg + text + sysINFO(),
+                text=Messages.task_msg + down_msg + text + "\n" + sysINFO(),
                 disable_web_page_preview=True,
                 reply_markup=keyboard(),
             )
