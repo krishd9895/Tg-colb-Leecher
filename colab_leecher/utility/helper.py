@@ -233,7 +233,7 @@ def sysINFO():
     cpu_usage_percent = psutil.cpu_percent(interval=1)
 
     # Initialize string
-    string = ""
+    string = "📊 **System Statistics:**\n"
     string += f"\n╭🖥️ **CPU Usage »**  __{cpu_usage_percent}%__"
     string += f"\n├💽 **RAM Usage »**  __{sizeUnit(ram_usage)}__"
     string += f"\n╰💾 **DISK Free »**  __{sizeUnit(disk_usage.free)}__"
