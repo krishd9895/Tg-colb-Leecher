@@ -231,11 +231,11 @@ def sysINFO():
     disk_usage = psutil.disk_usage("/")
     cpu_usage_percent = psutil.cpu_percent()
 
-    string = "\n\n⌬─────「 Colab Usage 」─────⌬\n"
+    
     string += f"\n╭🖥️ **CPU Usage »**  __{cpu_usage_percent}%__"
     string += f"\n├💽 **RAM Usage »**  __{sizeUnit(ram_usage)}__"
     string += f"\n╰💾 **DISK Free »**  __{sizeUnit(disk_usage.free)}__"
-    string += Messages.caution_msg
+    
 
     return string
 
@@ -363,7 +363,7 @@ async def send_settings(client, message, msg_id, command: bool):
     su = "None" if BOT.Setting.suffix == "" else "Exists"
     thmb = "None" if not BOT.Setting.thumbnail else "Exists"
     text += f"\n├⌬ PREFIX » <i>{pr}</i>\n├⌬ SUFFIX » <i>{su}</i>"
-    text += f"\n╰⌬ THUMBNAIL » <i>{thmb}</i>"
+    
     try:
         if command:
             await message.reply_text(text=text, reply_markup=keyboard)
