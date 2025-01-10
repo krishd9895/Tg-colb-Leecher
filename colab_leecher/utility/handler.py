@@ -1,6 +1,5 @@
 # copyright 2023 © Xron Trix | https://github.com/Xrontrix10
 
-
 import os
 import shutil
 import logging
@@ -209,28 +208,15 @@ async def cancelTask(Reason: str):
             await MSG.status_msg.delete()
             await colab_bot.send_message(
                 chat_id=OWNER,
-                text=text,
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(  # Opens a web URL
-                                "Channel 📣",
-                                url="https://t.me/",
-                            ),
-                            InlineKeyboardButton(  # Opens a web URL
-                                "Group 💬",
-                                url="https://t.me/",
-                            ),
-                        ],
-                    ]
-                ),
+                text=text
+                
             )
 
 
 async def SendLogs(is_leech: bool):
     global Transfer, Messages
     final_text = f"<b>☘️ File Count:</b>  <code>{len(Transfer.sent_file)}</code>\n\n<b>📜 Logs:</b>\n"
-    l_ink = "⌬─────[「 Colab Usage 」](https://colab.research.google.com/)─────⌬"
+    l_ink = "⌬─────[]─────⌬"
 
     if is_leech:
         file_count = (
@@ -259,26 +245,7 @@ async def SendLogs(is_leech: bool):
         )
         await MSG.status_msg.edit_text(
             text=Messages.task_msg + l_ink + last_text,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            "Git Repo 🪲",
-                            url="https://github.com/",
-                        ),
-                    ],
-                    [
-                        InlineKeyboardButton(  # Opens a web URL
-                            "Channel 📣",
-                            url="https://t.me/",
-                        ),
-                        InlineKeyboardButton(  # Opens a web URL
-                            "Group 💬",
-                            url="https://t.me/",
-                        ),
-                    ],
-                ]
-            ),
+            
         )
 
         if is_leech:
