@@ -1,13 +1,4 @@
-# copyright 2023 © Xron Trix | https://github.com/Xrontrix10
 
-
-# @title 🖥️ Main Colab Leech Code
-
-# @title Main Code
-# @markdown <div><center><img src="https://user-images.githubusercontent.com/125879861/255391401-371f3a64-732d-4954-ac0f-4f093a6605e1.png" height=80></center></div>
-# @markdown <center><h4><a href="https://github.com/XronTrix10/Telegram-Leecher/wiki/INSTRUCTIONS">READ</a> How to use</h4></center>
-
-# @markdown <br>
 
 API_ID = 0  # @param {type: "integer"}
 API_HASH = ""  # @param {type: "string"}
